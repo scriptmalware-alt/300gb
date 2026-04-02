@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔓 Masuk Ke Server HP Target</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-family: "Courier New", monospace;
+            padding: 20px;
+            text-align: center;
+        }
+        #device-frame {
+            width: 300px;
+            height: 600px;
+            margin: 20px auto;
+            background-color: #111;
+            border: 15px solid gray;
+            border-radius: 30px;
+            box-shadow: 0 0 20px lime;
+            overflow: hidden;
+            position: relative;
+        }
+        .gallery {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+        img, video {
+            width: 2cm;
+            height: 2cm;
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+        h1 {
+            margin: 10px 0;
+        }
+        #status {
+            margin: 10px 0;
+        }
+        #progress {
+            width: 50%;
+            height: 20px;
+            background-color: #444;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px auto;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: lime;
+        }
+        #delete-progress {
+            width: 50%;
+            height: 20px;
+            background-color: #444;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px auto; /* Memberikan margin untuk memberi jarak dengan elemen di atasnya */
+            display: none; /* Pastikan progres bar ini disembunyikan sampai diperlukan */
+        }
+        #delete-progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: lime;
+        }
+        .delete-btn {
+            margin-top: 20px;
+            padding: 8px 15px;
+            cursor: pointer;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            display: none; /* Tombol disembunyikan awalnya */
+            width: 50%; /* Menentukan lebar tombol agar lebih besar dan proporsional */
+            max-width: 250px; /* Membatasi lebar tombol */
+            margin-left: auto;
+            margin-right: auto; /* Memastikan tombol di tengah */
+        }
+    </style>
+</head>
+<body>
+
+<h1>🔓Script Malware HP Target</h1>
+<p>📂 Masukkan Nomor Target Device:</p>
+<input type="text" id="device-number" placeholder="Masukkan nomor atau user id target" style="padding: 8px; width: 250px; text-align: center;">
+<button onclick="verifyDevice()" style="padding: 8px 15px; cursor: pointer;">🔍 Verifikasi Kode Script</button>
+<p id="status"></p>
+<div id="progress"><div id="progress-bar"></div></div>
+
+<div id="device-frame" style="display: none;">
+    <h2 style="text-align:center;">Album Target</h2>
+    <div class="gallery">
+        <img src="gambar1.jpg" alt=".jpg">
+        <img src="gambar2.jpg" alt=".jpg">
+        <img src="gambar3.jpg" alt=".jpg">
+        <img src="gambar5.jpg" alt=".jpg">
+        <img src="gambar7.jpg" alt=".jpg">
+        <img src="gambar8.jpg" alt=".jpg">
+        <img src="gambar9.jpg" alt=".jpg">
+        <img src="gambar10.jpg" alt=".jpg">
+        <img src="gambar11.jpg" alt=".jpg">
+        <img src="gambar1.jpg" alt=".jpg">
+        <img src="gambar2.jpg" alt=".jpg">
+        <img src="gambar3.jpg" alt=".jpg">
+        <img src="gambar5.jpg" alt=".jpg">
+        <img src="gambar7.jpg" alt=".jpg">
+        <img src="gambar8.jpg" alt=".jpg">
+        <img src="gambar9.jpg" alt=".jpg">
+        <img src="gambar10.jpg" alt=".jpg">
+        <img src="gambar11.jpg" alt=".jpg">
+        <img src="gambar1.jpg" alt=".jpg">
+        <img src="gambar2.jpg" alt=".jpg">
+        <img src="gambar3.jpg" alt=".jpg">
+        <img src="gambar5.jpg" alt=".jpg">
+        <img src="gambar7.jpg" alt=".jpg">
+        <img src="gambar8.jpg" alt=".jpg">
+        <img src="gambar9.jpg" alt=".jpg">
+        <img src="gambar10.jpg" alt=".jpg">
+        <img src="gambar11.jpg" alt=".jpg">
+        <img src="gambar9.jpg" alt=".jpg">
+        <img src="gambar10.jpg" alt=".jpg">
+        <img src="gambar11.jpg" alt=".jpg">
+        <img src="gambar10.jpg" alt=".jpg">
+        <img src="gambar11.jpg" alt=".jpg">
+        <img src="gambar9.jpg" alt=".jpg">
+        <img src="gambar10.jpg" alt=".jpg">
+        <img src="gambar11.jpg" alt=".jpg">
+    </div>
+
+</div>
+
+<!-- Progres bar untuk penghapusan galeri, di luar #device-frame -->
+<div id="delete-progress">
+    <div id="delete-progress-bar"></div>
+</div>
+
+<!-- Tombol Hapus Galeri di luar #device-frame -->
+<button class="delete-btn" onclick="deleteAllGallery()">Buka Semua Images & Videos</button>
+
+<script>
+    function verifyDevice() {
+        const deviceNumber = document.getElementById("device-number").value;
+        const status = document.getElementById("status");
+        const validNumber = /^\d{0,13}$/;
+        const progressBar = document.getElementById("progress-bar");
+        const deviceFrame = document.getElementById("device-frame");
+        const deleteButton = document.querySelector(".delete-btn");
+        
+        if (validNumber.test(deviceNumber)) {
+            status.textContent = "✅ Searching Images & Videos Target...";
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) { // Jika progres bar mencapai 100%, berhenti
+                    clearInterval(interval);
+                    deviceFrame.style.display = "block";
+                    status.textContent = "✅ Images & Videos Target Ditemukan 186";
+                    deleteButton.style.display = "block"; // Menampilkan tombol hapus setelah tampilan Android muncul
+                } else {
+                    width++;
+                    progressBar.style.width = width + "%";
+                }
+            }, 50);
+        } else {
+            status.textContent = "❌ Nomor tidak valid! Masukkan nomor telepon yang benar (0-13 digit).";
+        }
+    }
+
+    function deleteAllGallery() {
+        const deleteProgressBar = document.getElementById("delete-progress-bar");
+        const deleteProgress = document.getElementById("delete-progress");
+        
+        // Tampilkan progres bar sebelum dimulai
+        deleteProgress.style.display = "block";
+        
+        let deleteWidth = 0;
+        const deleteInterval = setInterval(() => {
+            if (deleteWidth >= 100) {
+                clearInterval(deleteInterval);
+                const gallery = document.querySelector(".gallery");
+                // HAPUS semua gambar & video
+                gallery.innerHTML = "";
+                
+                // TAMPILKAN teks di tengah
+                gallery.insertAdjacentHTML("beforeend", 
+                "<p style='position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:lime; font-size:25px; text-align:center; width:90%; z-index:999;'>Images & Videos Open ERROR di perlukan Script Malware 900 GB untuk membuka semua files</p>"
+                );
+            } else {
+                deleteWidth++;
+                deleteProgressBar.style.width = deleteWidth + "%";
+            }
+        }, 50);
+    }
+</script>
+</body>
+</html>
